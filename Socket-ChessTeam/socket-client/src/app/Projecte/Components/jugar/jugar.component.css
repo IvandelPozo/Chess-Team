@@ -1,0 +1,21 @@
+.taula {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 560px;
+    text-align: center;
+}
+
+.jugar {
+    text-align: center;
+    display: flex;
+}
+
+.matades {
+    border: 2px solid;
+    width: 58vh;
+    height: 12vh;
+}
+
+.esquerre {
+    text-align: left;
+}

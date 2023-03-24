@@ -1,0 +1,95 @@
+<h1 *ngIf="teamMember">Navegador de: {{ teamMember.nom }} - {{ teamMember.colorPeces }}</h1>
+<button *ngIf="!teamMember" (click)="assignMember()">Jugar</button>
+
+<div *ngIf="lluitadorsTaulell1" class="jugar">
+    <div>
+        <h2 class="esquerre">{{lluitadorsTaulell1}}</h2>
+        <h2 class="esquerre">{{T1JN}}</h2>
+
+        <div class="matades">
+            <img *ngFor="let peca of taulells[0].pecesMortes[1]" [src]="peca.imatge">
+        </div>
+        
+        <h1><b>Taulell 1</b></h1>
+        <table class="taula">
+            <tr>
+                <td></td>
+                <ng-container *ngFor="let lletra of taulells[0].lletres">
+                    <td>{{lletra}}</td>
+                </ng-container>
+                <td></td>
+            </tr>
+            <ng-container *ngFor="let fila of taulells[0].caselles; let x = index">
+                <tr>
+                    <td>{{taulells[0].numeros[x]}}</td>
+                    <td *ngFor="let casella of fila; let y = index"
+                        [ngStyle]="{'background-color': casella.color ===
+                        'blanc' ? '#e9e9b2' : '#c58f47', 'height':
+                        '55px','width': '55px'}"
+                        (dragover)="onDragOver($event)"
+                        (drop)="onDrop($event, x, y)">
+
+                        <img [src]="casella.peca?.imatge"
+                            (dragstart)="onDragStart($event, x, y)" [draggable]="draggable(x,y,0)">
+                    </td>
+                    <td>{{taulells[0].numeros[x]}}</td>
+                </tr>
+            </ng-container>
+            <tr>
+                <td></td>
+                <ng-container *ngFor="let lletra of taulells[0].lletres">
+                    <td>{{lletra}}</td>
+                </ng-container>
+                <td></td>
+            </tr>
+        </table>
+        <div class="matades">
+            <img *ngFor="let peca of taulells[0].pecesMortes[0]" [src]="peca.imatge">
+        </div>
+        <h2 class="esquerre">{{T1JB}}</h2>
+    </div>
+    <div>
+        <h2 class="esquerre">{{lluitadorsTaulell2}}</h2>
+        <h2 class="esquerre">{{T2JB}}</h2>
+        <div class="matades">
+            <img *ngFor="let peca of taulells[1].pecesMortes[0]" [src]="peca.imatge">
+        </div>
+        <h1><b>Taulell 2</b></h1>
+        <table class="taula">
+            <tr>
+                <td></td>
+                <ng-container *ngFor="let lletra of taulells[1].lletres">
+                    <td>{{lletra}}</td>
+                </ng-container>
+                <td></td>
+            </tr>
+            <ng-container *ngFor="let fila of taulells[1].caselles; let x = index">
+                <tr>
+                    <td>{{taulells[1].numeros[x]}}</td>
+                    <td *ngFor="let casella of fila; let y = index"
+                    [ngStyle]="{'background-color': casella.color ===
+                    'blanc' ? '#e9e9b2' : '#c58f47', 'height':
+                    '55px','width': '55px'}"
+                    (dragover)="onDragOver($event)"
+                    (drop)="onDrop($event, x, y)">
+
+                    <img [src]="casella.peca?.imatge"
+                        (dragstart)="onDragStart($event, x, y)" [draggable]="draggable(x,y,1)">
+                    </td>
+                    <td>{{taulells[1].numeros[x]}}</td>
+                </tr>
+            </ng-container>
+            <tr>
+                <td></td>
+                <ng-container *ngFor="let lletra of taulells[1].lletres">
+                    <td>{{lletra}}</td>
+                </ng-container>
+                <td></td>
+            </tr>
+        </table>
+        <div class="matades">
+            <img *ngFor="let peca of taulells[1].pecesMortes[1]" [src]="peca.imatge">
+        </div>
+        <h2 class="esquerre">{{T2JN}}</h2>
+    </div>
+</div>

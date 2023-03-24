@@ -1,0 +1,20 @@
+<form [formGroup]="this.equipsForm">
+        <label>Nom equip:</label>
+        <input type="text" formControlName="nomEquip">
+
+        <label>Jugador 1:</label>
+        <input type="text" formControlName="nomJugador1">
+
+        <label>Jugador 2:</label>
+        <input type="text" formControlName="nomJugador2">
+
+        <button type="button" [disabled]="!this.equipsForm.valid"
+                (click)="entrarEquip(equipsForm)">Entrar</button>
+</form>
+<pre class="redColor">
+        {{msgErrorDuplicated}}
+</pre>
+<div *ngIf="equipsForm.hasError('duplicateMemberName') &&
+        equipsForm.get('nomJugador2')?.dirty" class="redColor">
+        <p>El nom del jugador 2 no pot ser igual al del jugador 1</p>
+</div>
